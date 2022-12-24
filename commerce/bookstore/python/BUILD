@@ -35,14 +35,20 @@ load("@rules_python//python:python.bzl", "py_library", "py_test")
 load("@vaticle_typedb_client_python_pip//:requirements.bzl",
        vaticle_typedb_client_python_requirement = "requirement")
 
-load("@phone_calls_pip//:requirements.bzl",
-       phone_calls_requirement = "requirement")
+load("@bookstore_pip//:requirements.bzl",
+       bookstore_requirement = "requirement")
 
 py_binary(
-    name = "load-data",
+    name = "load_data",
     srcs = ["load_data.py"],
     deps = [
-        "@vaticle_typedb_client_python//:client_python"
+        "@vaticle_typedb_client_python//:client_python",
+
+        bookstore_requirement("argparse")
+
+#import loaders
+#import config
+
     ],
     data = [
         "//commerce/bookstore:data-csv"
@@ -53,7 +59,9 @@ py_binary(
     name = "requests",
     srcs = ["requests.py"],
     deps = [
-        "@vaticle_typedb_client_python//:client_python"
+        "@vaticle_typedb_client_python//:client_python",
+
+        bookstore_requirement("argparse")
     ],
     data = [
         "//commerce/bookstore:data-csv"
@@ -64,7 +72,9 @@ py_library(
     name = "loaders",
     srcs = ["loaders.py"],
     deps = [
-        "@vaticle_typedb_client_python//:client_python"
+        "@vaticle_typedb_client_python//:client_python",
+
+        bookstore_requirement("uuid")
     ]
 )
 
