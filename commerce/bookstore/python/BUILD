@@ -40,7 +40,7 @@ load("@phone_calls_pip//:requirements.bzl",
 
 py_binary(
     name = "load-data",
-    srcs = ["load-data.py"],
+    srcs = ["load_data.py"],
     deps = [
         "@vaticle_typedb_client_python//:client_python"
     ],
